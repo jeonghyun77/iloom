@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="icon_counseling" width="50" height="50" viewBox="0 0 50 50">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#333;stroke-linecap:round;stroke-width:2.14px;stroke-linejoin:round}
+        </style>
+    </defs>
+    <g id="그룹_6856" transform="translate(-1220 -134)">
+        <g id="그룹_6855" transform="translate(1231 145)">
+            <g id="그룹_6854">
+                <g id="그룹_6853" transform="translate(9.474)">
+                    <circle id="타원_271" cx="4.241" cy="4.241" r="4.241" class="cls-1"/>
+                </g>
+                <path id="선_575" d="M0 0L27.43 0" class="cls-1" transform="translate(0 28.482)"/>
+                <path id="패스_1890" fill="none" stroke="#333" stroke-linecap="round" stroke-width="2.14px" d="M0 0h14.368v15.53H0z" transform="translate(6.531 12.952)"/>
+                <path id="선_576" d="M0 0L0 5.46" class="cls-1" transform="translate(13.715 13.276)"/>
+            </g>
+        </g>
+    </g>
+    <g id="그룹_6857" transform="translate(-683 -107)">
+        <path id="사각형_8144" fill="none" d="M0 0H50V50H0z" transform="translate(683 107)"/>
+    </g>
+</svg>

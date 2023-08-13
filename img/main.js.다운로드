@@ -1,0 +1,421 @@
+var reviewCardComponent = {
+	page: 1,
+	category:'0',
+	order: 'a',
+	bestData: {},
+	categoryData: {},
+	popupData:{
+		type: '',
+		index: 0
+	},
+	productBaseUrl: '/product/detail.do?productCd=',
+	getBestReview: function(callback) {
+		$.ajax({
+			url: "/review/best.do",
+			cache: false,
+			method: "get",
+			dataType: "json"
+		}).done(function(data) {
+			if (!data.show) {
+				return;
+			}
+			reviewCardComponent.bestData = data;
+			$('div.slidBox.incrclBtn.swiper-container').children().remove();
+			if(!reviewCardComponent.bestData.show){
+				return;
+			}
+			$('div.slidBox.incrclBtn.swiper-container').append(
+				'<ul class="slidLst swiper-wrapper"></ul>'
+			);
+			var cardList = $('ul.slidLst.swiper-wrapper');
+			data.reviews.forEach(function(review, index) {
+				var reviewCard = $('#review-list-card').clone();
+				var reviewCardContent = $(reviewCard.html());
+
+				//라뷰 이미지
+				if (1 < review.images.length) {
+					reviewCardContent
+						.find('figure.nwReviewBx._lst.sqrCntr')
+						.addClass('inimgs');
+				}
+				reviewCardContent.find('img.template-review-photo')
+					.attr('src', review.imgReview);
+				reviewCardContent.find('img.template-review-photo')
+					.attr('data-review-type', 'best');
+				reviewCardContent.find('img.template-review-photo')
+					.attr('data-review-index', index);
+
+				//별점
+				reviewCardContent.find('article.starGrdBx')
+					.addClass('grdChck' + review.score);
+
+				//제목, 내용
+				reviewCardContent.find('.template-review-title')
+					.text(review.title);
+				reviewCardContent.find('.template-review-content')
+					.text(review.contents);
+
+				//상품
+				//이미지
+				reviewCardContent.find('img.template-product-photo')
+					.attr('src', review.product.productImg_1);
+				reviewCardContent.find('img.template-product-photo')
+					.attr('data-page-url', reviewCardComponent.productBaseUrl+review.product.productCd);
+				//이름
+				reviewCardContent.find('span.template-product-title')
+					.text(review.product.productNm);
+				//wish count
+				reviewCardContent.find('span.template-product-like-number')
+					.text(review.product.wishCnt);
+				//카테고리
+				reviewCardContent.find('span.template-product-category')
+					.text(review.product.categoryNm);
+				//가격
+				reviewCardContent.find('input.template-product-price')
+					.val(review.product.maxPrice);
+				//wish 버튼
+				if(review.wish){
+					reviewCardContent.find('.likeHrt').addClass('on');
+				}
+				reviewCardContent.find('.likeHrt')
+					.attr('data-wish-product-cd', review.product.productCd);
+
+				reviewCard.html(reviewCardContent.prop('outerHTML'));
+				cardList.append(reviewCard.html());
+			})
+			if(callback){
+				callback();
+			}
+			addBaseEvents();
+		}).fail(function(xhr, textStatus, error) {
+			console.log(error);
+		});
+	},
+	getCategoryReview: function(callback) {
+		$.ajax({
+			url: "/review/categories/" + reviewCardComponent.category + "/list.do",
+			cache: false,
+			method: "get",
+			dataType: "json",
+			async: false,
+			data:{
+				"rownum": "12",
+				"page": reviewCardComponent.page,
+				"perPageNum": "5",
+				"order": reviewCardComponent.order
+			}
+		}).done(function(data) {
+			reviewCardComponent.categoryData = data;
+			var cardList = $('ul.cntntsBx12Bx.reviewLst');
+			cardList.children().remove();
+			data.reviews.forEach(function(review, index) {
+				var reviewCard = $('#review-list-card').clone();
+				var reviewCardContent = $(reviewCard.html());
+
+				//라뷰 이미지
+				if (1 < review.images.length) {
+					reviewCardContent
+						.find('figure.nwReviewBx._lst.sqrCntr')
+						.addClass('inimgs');
+				}
+				reviewCardContent.find('img.template-review-photo')
+					.attr('src', review.imgReview);
+				reviewCardContent.find('img.template-review-photo')
+					.attr('data-review-type', 'category');
+				reviewCardContent.find('img.template-review-photo')
+					.attr('data-review-index', index);
+
+				//별점
+				reviewCardContent.find('article.starGrdBx')
+					.addClass('grdChck' + review.score);
+
+				//제목, 내용
+				reviewCardContent.find('.template-review-title')
+					.text(review.title);
+				reviewCardContent.find('.template-review-content')
+					.text(review.contents);
+
+				//상품
+				//이미지
+				reviewCardContent.find('img.template-product-photo')
+					.attr('src', review.product.productImg_1);
+				reviewCardContent.find('img.template-product-photo')
+					.attr('data-page-url', reviewCardComponent.productBaseUrl+review.product.productCd);
+				//이름
+				reviewCardContent.find('span.template-product-title')
+					.text(review.product.productNm);
+				//wish count
+				reviewCardContent.find('span.template-product-like-number')
+					.text(review.product.wishCnt);
+				//카테고리
+				reviewCardContent.find('span.template-product-category')
+					.text(review.product.categoryNm);
+				//가격
+				reviewCardContent.find('input.template-product-price')
+					.val(review.product.maxPrice);
+				//wish 버튼
+				if(review.wish){
+					reviewCardContent.find('.likeHrt').addClass('on');
+				}
+				reviewCardContent.find('.likeHrt')
+					.attr('data-wish-product-cd', review.product.productCd);
+
+				reviewCard.html(reviewCardContent.prop('outerHTML'));
+				cardList.append(reviewCard.html());
+			})
+			$('menu.list_cnt_ul').children().remove();
+			if(data.startPage!=1){
+				$('menu.list_cnt_ul').append('<li data-page-no="'+(parseInt(data.startPage)-1)+'"><a>&lt;</a></li>');
+			}
+			for(var pageIndex = data.startPage; pageIndex<=data.endPage; pageIndex++){
+				var pageListElement = $('<li data-page-no="'+pageIndex+'"><a>'+pageIndex+'</a></li>');
+				if(pageIndex == reviewCardComponent.page){
+					pageListElement.addClass('selected');
+				}
+				$('menu.list_cnt_ul').append(pageListElement);
+			}
+			if(data.endPage!=data.totalPages){
+				$('menu.list_cnt_ul').append('<li data-page-no="'+(parseInt(data.endPage)+1)+'"><a>&gt;</a></li>');
+			}
+			if(callback){
+				callback();
+			}
+			addBaseEvents();
+		}).fail(function(xhr, textStatus, error) {
+			console.log(error);
+		});
+	},
+	setPopup: function(){
+		//-----현재 리뷰 정보-----
+		var type = reviewCardComponent.popupData.type;
+		var index = reviewCardComponent.popupData.index;
+		var reviews = reviewCardComponent[type+'Data'].reviews;
+		var review = reviews[index];
+
+		var aside = $('aside.popupBox');
+		aside.children().remove();
+
+		var popupTemplate = $('#review-popup-card').clone();
+		var popupContent = $(popupTemplate.html());
+
+		popupContent.find('img.article-main-image').attr('src', review.imgReview);
+		popupContent.find('article.article-review-star').addClass('grdChck'+parseInt(review.score));
+		review.images.forEach(function(e){
+			popupContent.find('menu.article-image-list').append(
+				'<li class="btnImg"><input type="image" class="photo" src="'+e.path+'/'+e.fileNm+'" /></li>'
+			);
+		});
+		popupContent.find('dt.article-review-title').text(review.title);
+		popupContent.find('span.article-review-content').text(review.contents);
+		popupContent.find('img.article-product-image').attr('src', review.product.productImg_1);
+		popupContent.find('img.article-product-image').attr('data-page-url', reviewCardComponent.productBaseUrl+review.product.productCd);
+		popupContent.find('span.article-product-title').contents()[0].textContent = review.product.productNm;
+		popupContent.find('span.article-product-category').text(review.product.categoryNm);
+		popupContent.find('span.article-product-wish-count').text(review.product.wishCnt);
+		//wish 버튼
+		if(review.wish){
+			popupContent.find('.likeHrt').addClass('on');
+		}
+		popupContent.find('.likeHrt')
+			.attr('data-wish-product-cd', review.product.productCd);
+		popupContent.find('input.article-product-price').val(review.product.maxPrice);
+		popupTemplate.html(popupContent.prop('outerHTML'));
+		aside.append(popupTemplate.html());
+		$('.closePop').click(function(){
+			$('.pop_viewReview').removeClass('openPop');
+			$('body').removeClass('ovtFlwHddn');
+		})
+		imgLstClck();
+		cmma();
+		innmbr();
+		likeHrt();
+		swipeActn();
+		var btnImg = aside.find('.img img');
+		btnImg.load(function(){
+			var biWdth = btnImg.width();
+			var biHght = btnImg.height();
+			if (biWdth < biHght) {
+				btnImg.addClass('hpht');
+			} else {
+				btnImg.addClass('wpht');
+			}
+		});
+		$('.likeHrt').off('click').click(function(){
+			if (userNo == '') {
+				if (!confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?"))
+					return;
+				else
+					location.href = '/account/login.do?retUrl=/review/main.do';
+			} else {
+				manageWishProduct($(this).data('wish-product-cd'), userNo);
+			}
+		});
+		$('.template-product-photo, .article-product-image').off('click').click(function(){
+			location.href = $(this).data('page-url');
+		});
+	},
+	addPopupEvent: function(){
+		$('img.template-review-photo').off('click').click(function() {
+			var currentElement = $(this);
+			reviewCardComponent.popupData.type = currentElement.data('review-type');
+			reviewCardComponent.popupData.index = currentElement.data('review-index');
+			reviewCardComponent.setPopup();
+		});
+	},
+	addPageEvent: function(){
+		$('menu.list_cnt_ul>li').off('click').click(function(){
+			reviewCardComponent.page = $(this).data('page-no');
+			reviewCardComponent.getCategoryReview(reviewCardComponent.scrollToCategory());
+		})
+	},
+	addCategoryEvent: function(){
+		$('li.ctgr>a').off('click').click(function(){
+			reviewCardComponent.category = $(this).data('category-no');
+			reviewCardComponent.getCategoryReview(reviewCardComponent.scrollToCategory());
+		})
+	},
+	scrollToCategory: function(){
+		if($('section.dfCntntsBx').offset()){
+			var offset = $('section.dfCntntsBx').offset();
+			$('html').animate({scrollTop:offset.top-140}, 0);
+		}
+	}
+};
+function addBaseEvents(){
+	reviewCardComponent.addPopupEvent();
+	reviewCardComponent.addPageEvent();
+	reviewCardComponent.addCategoryEvent();
+	ctgrMenu();//카테고리 메뉴 클릭시 색변화
+	photoRvwNbrChck();
+	imgLstClck();
+	opnPopRevw();//상품평 팝업으로 보기
+	cmma();
+	innmbr();
+	sqrCntrImg();
+	likeHrt();
+	lstSlct();
+	subctgrMenu();
+	swipeActn();
+	$('.likeHrt').off('click').click(function(){
+		if (userNo == '') {
+			if (!confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?"))
+				return;
+			else
+				location.href = '/account/login.do?retUrl=/review/main.do';
+		} else {
+			manageWishProduct($(this).data('wish-product-cd'), userNo);
+		}
+	});
+	$('.template-product-photo, .article-product-image').off('click').click(function(){
+		location.href = $(this).data('page-url');
+	});
+}
+$(function() {
+	reviewCardComponent.getBestReview();
+	reviewCardComponent.getCategoryReview();
+	addBaseEvents();
+	$('.lstSlct button').click(function(){
+		if($(this).parent().hasClass('on')){
+			return;
+		}
+		if($(this).hasClass('new')){
+			reviewCardComponent.order = 'a';
+		}else if($(this).hasClass('hot')){
+			reviewCardComponent.order = 'd';
+		}
+		reviewCardComponent.getCategoryReview();
+	});
+});
+function swipeActn() {//터치액션
+	var menuSldBtn = $('#tmplBox_nwReview');//메뉴 슬라이드버튼
+	//if(window.innerWidth <= 900){
+	menuSldBtn.swipe({
+		swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
+			if (direction == "left") {
+				if(reviewCardComponent.popupData.type === 'best'){
+					if(reviewCardComponent.popupData.index == reviewCardComponent.bestData.reviews.length-1){
+						reviewCardComponent.popupData.index=0;
+						reviewCardComponent.setPopup();
+						return;
+					}
+					reviewCardComponent.popupData.index+=1;
+					reviewCardComponent.setPopup();
+				}
+				if(reviewCardComponent.popupData.type === 'category'){
+					if(reviewCardComponent.popupData.index == reviewCardComponent.categoryData.reviews.length-1 && reviewCardComponent.page == reviewCardComponent.categoryData.totalPages){
+						return;
+					}
+					if(reviewCardComponent.popupData.index == reviewCardComponent.categoryData.reviews.length-1){
+						reviewCardComponent.page+=1;
+						reviewCardComponent.getCategoryReview();
+						reviewCardComponent.popupData.index = 1;
+						reviewCardComponent.setPopup();
+						return;
+					}
+					reviewCardComponent.popupData.index+=1;
+					reviewCardComponent.setPopup();
+				}
+			} else if (direction == "right") {
+				if(reviewCardComponent.popupData.type === 'best'){
+					if(reviewCardComponent.popupData.index == 0){
+						return;
+					}
+					reviewCardComponent.popupData.index-=1;
+					reviewCardComponent.setPopup();
+				}
+				if(reviewCardComponent.popupData.type === 'category'){
+					if(reviewCardComponent.popupData.index == 0 && reviewCardComponent.page == 1){
+						return;
+					}
+					if(reviewCardComponent.popupData.index == 0){
+						reviewCardComponent.page-=1;
+						reviewCardComponent.getCategoryReview();
+						reviewCardComponent.popupData.index = reviewCardComponent.categoryData.reviews.length-1;
+						reviewCardComponent.setPopup();
+						return;
+					}
+					reviewCardComponent.popupData.index-=1;
+					reviewCardComponent.setPopup();
+				}
+			}
+		},
+		threshold: 0
+	});
+	//}else{
+	// }
+}
+$(".wish_btn").click(function() {
+
+	if (userNo == '') {
+		if (!confirm("로그인이 필요한 서비스입니다. 로그인하시겠습니까?"))
+			return;
+		else
+			location.href = '/account/login.do?retUrl=/product/detail.do?productCd=${vo.productCd}';
+	} else {
+		manageWishProduct(productCd, userNo);
+	}
+});
+/*  위시리스트 추가 & 삭제 */
+	function manageWishProduct(productCd, userNo) {
+
+		$.ajax({
+			url : "/product/wishProduct/insert_delete.do",
+			data : {
+				"productCd" : productCd,
+				"userNo" : userNo
+			},
+			dataType : "json",
+			cache : false,
+			method : "post"
+
+		}).done(function(data) { //컨트롤러 리턴값
+
+			if (data.result == "SUCCESS") {
+				alert(data.msg);
+				reviewCardComponent.getBestReview(reviewCardComponent.setPopup);
+				reviewCardComponent.getCategoryReview(reviewCardComponent.setPopup);
+			} else {
+				alert(data.msg);
+			}
+		});
+	}

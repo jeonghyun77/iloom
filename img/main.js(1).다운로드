@@ -1,0 +1,146 @@
+// JavaScript Document
+
+/* 메인_배너 */
+
+$(function(){
+
+	var bannerSize = $("#rbSize").val() * 1;
+	var rollingDirection = 'right';
+	var bannerNum = bannerSize - 1;
+	var initialLoad = true;
+	var isAnimating = false;
+
+	if (bannerSize < 2) {
+		$("#main_banner_section .btn_left").hide();
+		$("#main_banner_section .btn_right").hide();
+	} else {
+		$("#main_banner_section .btn_left").show();
+		$("#main_banner_section .btn_right").show();
+	}
+
+	$('#main_banner_section .btn_left a').click(function(){
+
+		if (isAnimating) return false;
+		rollingDirection = 'left';
+
+		autoRolling();
+		resetRolling();
+
+		return false;
+	});
+
+	$('#main_banner_section .btn_right a').click(function(){
+
+		if (isAnimating) return false;
+
+		rollingDirection = 'right';
+		autoRolling();
+		resetRolling();
+		return false;
+	});
+
+	autoRolling();	//롤링 돌리기 전에 뷰 초기화
+	resetRolling();	// 초기화 이후 롤링 setInterval 세팅
+	version_chk();
+
+	function version_chk() {
+		if(navigator.appVersion.indexOf("MSIE 6") != -1) {
+			alert('인터넷 익스플로러 6은 지원하지 않습니다. \n인터넷 익스플로러7 또는 8을 이용해주세요.');
+		}
+	}
+
+	function autoRolling(){
+
+		var initialNum = bannerNum;
+		isAnimating = true;
+
+		if(rollingDirection == 'left') { bannerNum--; }
+		else if(rollingDirection == 'right') { bannerNum++; }
+		else {} // Do Nothing
+
+		if(bannerNum > bannerSize - 1) { bannerNum = 0; }
+		else if(bannerNum < 0) { bannerNum = bannerSize - 1; }
+		else {} // Do Nothing
+
+		for(var i=0; i < bannerSize ; i++)
+		{
+			$('#main_banner_section .fade').children().eq(i).hide();
+			$('#main_banner_section .show').children().eq(i).hide();
+		}
+
+		$('#main_banner_section .show').children().eq(bannerNum).fadeIn(1000);
+		//alert(bannerNum);
+
+
+		//hyewon
+	   if($('.gnbType'+bannerNum).text()=="W"){
+		   $('#main_gnb .gnb_item:first-child .gnb_item_topMenu>li').css('color','white');
+		   $('#main_gnb .gnb_item:last-child ul li a').css('color','white');
+		   $('.searchImg').attr('src','img/front/gnb/gnb_search_3_w.png');
+		   $('.cartImg').attr('src','img/front/gnb/gnb_cart_3_w.png');
+		   $('.allMenu').attr('src','/img/front/gnb/icon_gnb_menu_w.png');
+
+	   }else{
+		   $('#main_gnb .gnb_item:first-child .gnb_item_topMenu>li').css('color','#333');
+		   $('#main_gnb .gnb_item:last-child ul li a').css('color','#333');
+		   $('.searchImg').attr('src','img/front/gnb/gnb_search_3.png');
+		   $('.cartImg').attr('src','img/front/gnb/gnb_cart_3.png');
+		   $('.allMenu').attr('src','/img/front/gnb/icon_gnb_menu.png');
+
+	   }
+	   ////////////////
+
+
+		if(initialLoad == true) {
+			initialLoad = false;
+		}else {
+			$('#main_banner_section .fade').children().eq(initialNum).show();
+			$('#main_banner_section .fade').children().eq(initialNum).fadeOut(1000);
+			$('#main_banner_section .fade').children().eq(initialNum).find('.banner_text').fadeOut(1000)
+		}
+
+		$('#main_banner_section .banner_cnt').text((bannerNum+1)+" of " + bannerSize);
+		isAnimating = false;
+
+	}
+
+	function resetRolling()
+	{
+		if(typeof(autoTimer) != 'undefined')
+		{
+			clearInterval(autoTimer);
+		}
+
+		autoTimer = setInterval(function(){
+			autoRolling();
+		},7000);
+	}
+
+	$.ajax({
+		url: "/main/instagramFeed.do",
+		cache: false,
+		method: "post",
+		dataType: "json"
+	}).done(function(result) {
+		var feeds = result.data;
+		if(!feeds){return;}
+		for(let i=0;i<5;i++){
+			var feed = feeds[i];
+			var permalink = feed.permalink;
+			var mediaType = feed.media_type;
+			var mediaUrl =
+				mediaType === "VIDEO" ?
+				feed.thumbnail_url : feed.media_url;
+			$("#main_instagram_section .main_card_list .main_card:nth-child("+(i+1)+")")
+	       .append("<a href='"+permalink+"' target='_blank'> <img src='"+mediaUrl+"'  width='100%' /> </a>");
+		}
+
+	}).fail(function(xhr, textStatus, error){
+		console.log("ajax 에러가 발생했습니다.: "+xhr.responseText);
+		console.log("textStatus: "+textStatus);
+		console.log("error: "+error);
+	});
+
+});
+
+

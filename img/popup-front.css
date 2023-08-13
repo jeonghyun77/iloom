@@ -1,0 +1,203 @@
+/* main 팝업 */
+#bottomLayerPopup {
+	background-color: #fff8eb;
+	text-align: center;
+	padding: 20px 0px 15px 0px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index: 999;
+	line-height: 23px;
+	font-size: 13px;
+}
+
+#centerLayerPopup {
+	z-index: 9999;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	display: none;
+}
+
+#centerLayerPopup .popupContents {
+	font-size: 15px;
+	line-height: 25px;
+	text-align: center;
+	color: #767676;
+	z-index: 9999;
+	border-radius: 4px;
+}
+
+#centerLayerPopup .popupContents img {
+	width: 100%;
+	/* margin: 16px 0; */
+}
+
+#centerLayerPopup .popupContents .btn{
+	width: calc(100% - 68px);
+	height: 44px;
+	line-height: 24px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.popupContents p {
+	font-family: 'Noto Sans KR';
+	font-weight: normal;
+	color: #767676;
+}
+
+/*#mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9000;
+	background-color: #000;
+	opacity: 0.35;
+	display: none;
+}*/
+
+/* #popup_overlay {
+	background-color: #000;
+	bottom: 0;
+	left: 0;
+	opacity: 0.5;
+	filter: alpha(opacity = 30);
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 1000;
+	display: none;
+}
+
+#popup_layer {
+	width: auto;
+	margin-bottom: 30px;
+	border: none;
+	position: absolute;
+	top: 100px;
+	left: 40%;
+	margin-left: -1%;
+	z-index: 1001;
+	display: none;
+	padding:20px;
+	overflow:hidden;
+} */
+#popup_layer .popupclose:hover, #popup_layer .todayClose label:hover {
+	cursor: pointer;
+}
+
+#bottomLayerPopup p, .popupContents p {
+	font-family: 'Noto Sans KR';
+	font-weight: normal;
+	font-size: 13px;
+}
+
+#bottomLayerPopup p {
+	color: #222222;
+}
+
+/* 	.todayClose{
+		font-size:14px;
+		color: black;
+		position:relative;
+		top: -30px;
+		padding: 10px 15px;
+		border:none;
+		text-align:right;
+		background-color: #e0e0e0;
+
+	}  */
+#main_attractt_section {
+	height: 1000px;
+	background-color: #f0f0f0;
+}
+
+#centerLayerPopup .closeBar {
+	display: inline-flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 14px;
+	z-index: 9999;
+}
+
+#centerLayerPopup .closeBar * {
+	color: white;
+	cursor: pointer;
+}
+
+#centerLayerPopup .closeBar input[type="checkbox"] {
+	display: none;
+}
+
+#centerLayerPopup .closeBar input[type="checkbox"]+label::before {
+	content: "";
+	display: inline-block;
+	float: left;
+	width : 18px;
+	height: 19px;
+	background: url("/img/front/btn/checkBox_w_off.svg");
+	background-repeat: no-repeat;
+	margin: 0 8px 0 0;
+}
+
+#centerLayerPopup .closeBar input[type="checkbox"]:checked+label::before{
+	background: url("/img/front/btn/checkBox_w_on.svg");
+	background-repeat: no-repeat;
+}
+#centerLayerPopup .closeBar .closeBtn{
+	width : 18px;
+	height: 18px;
+	background: url("/img/front/btn/close_w.svg");
+	background-repeat: no-repeat;
+}
+/* 2022.01.10 새학기 레이어 팝업 */
+.newSmstrPop .btnPstnCntr{
+    position: relative;
+    top: 143px;
+    float: right;
+    width: 598px;
+    margin: 0 54px 0 0;
+}
+.newSmstrPop .btnPstnCntr .btn1{
+	width: 295px;
+	height: 55px;
+	margin: 0 8px 0 0;
+    background-image: url("/img/front/popup/newSmstr_popup_220107_btn1.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.newSmstrPop .btnPstnCntr .btn1:hover{
+    background-image: url("/img/front/popup/newSmstr_popup_220107_btn1_hover.png");
+}
+.newSmstrPop .btnPstnCntr .btn2{
+	width: 295px;
+	height: 55px;
+    background-image: url("/img/front/popup/newSmstr_popup_220107_btn2.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.newSmstrPop .btnPstnCntr .btn2:hover{
+    background-image: url("/img/front/popup/newSmstr_popup_220107_btn2_hover.png");
+}
+.newSmstrPop .video{
+	position: relative;
+	top: 61px;
+	left: 136px;
+}
+.newSmstrPop{
+	position:relative;
+    width: 978px;
+    height: 588px;
+    box-sizing: border-box;
+    background-image: url("/img/front/popup/newSmstr_popup_220107.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+}

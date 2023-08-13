@@ -1,0 +1,164 @@
+
+
+function popClose(){ // 팝업 기본 닫힘 closePop
+  cookiedata = document.cookie;
+  $('.closePop').click(function() {
+    var popBox = $(this).parents('.popupBox');
+    var popCLose = popBox.find('.closePop');
+    var todayOff = popBox.find('.todyOffBtn');
+    var nverOff = popBox.find('.nverOffBtn');
+    $('body').removeClass('ovtFlwHddn');
+    popBox.removeClass('openPop');
+      if(nverOff.is(':checked')){
+        SetCookie('nvr_cookie','1');
+      }
+    });
+}
+
+function todyOffClose(){ // 오늘하루 보지않기
+if(getCookie("todyOffBx") == "done"){
+  $(".todyOffBx").removeClass('openPop');
+  $(".todyOffBx").hide();
+}
+  $('.todyOffBtn').each(function() {
+  var popBox = $(this).parents('.todyOffBx');
+      $(this).click(function () {//오늘하루 보지않기
+          setCookie(popBox,"done",1);
+            popBox.removeClass('openPop');
+            popBox.hide();
+      });
+  });
+}
+// 쿠키 만들기
+function setCookie(name, value, expiredays) {
+	var today = new Date();
+	    today.setDate(today.getDate() + expiredays);
+	    document.cookie = name + '=' + escape(value) + '; path=/; expires=' + today.toGMTString() + ';'
+}
+//쿠키 가져오기
+function getCookie(name) {
+    var cName = name + "=";
+    var x = 0;
+    var i = 0;
+    while ( i <= document.cookie.length )
+    {
+        var y = (x+cName.length);
+        if ( document.cookie.substring( x, y ) == cName ) {
+          var endOfCookie = document.cookie.indexOf( ";", y );
+            if ( endOfCookie == -1 ){
+                endOfCookie = document.cookie.length;}
+            return unescape( document.cookie.substring( y, endOfCookie ) );
+        }
+        x = document.cookie.indexOf( " ", x ) + 1;
+        if ( x == 0 )
+            break;
+    }
+    return "";
+}
+
+
+function nverOffClose(){ // 다시열지않기
+  $('.nverOffBtn').each(function() {
+  var nvrpopBox = $(this).parents('.nverOffBx');
+      $(this).click(function () {
+           if($(this).is(':checked')){
+ 			SetCookie('nvr_cookie','1');
+               nvrpopBox.removeClass('openPop');
+ 		 }
+ 		//체크없이 닫기만 눌렀다면 아무런 변화없이 페이지만 닫느다
+ 		else{
+               nvrpopBox.removeClass('openPop');
+ 		}
+      });
+  });
+
+}
+
+//위에서 설정한 이름과 값으로 쿠키 생성
+	function SetCookie(sName, sValue){
+		document.cookie = sName + "=" + escape(sValue);
+	}
+     function GetCookie(sName){
+     		var aCookie = document.cookie.split("; ");
+     		//검색을 원하는 쿠키명(test_cookie)과 저장되어 있는 쿠키의 이름이 일치하는지 확인
+     		for(var i=0; i<aCookie.length; i++){
+     			var aCrumb = aCookie[i].split("=");
+     			if(sName == aCrumb[0]){
+     				return unescape(aCrumb[1]);
+     			}
+     		}
+     		return null;
+     	}
+function popBgsOpn(){//여러개 팝업이 동시에 열릴시 배경 조정
+     var pop1 = $('#centerLayerPopup').is(':visible');
+     var pop2 = $('.popupBox').is(':visible');
+          alert('test');
+     if(pop1 > 0 && pop2 > 0){
+          $('#centerLayerPopup').find('#mask').hide();
+          if($('.popupBox').hasClass('popbgOpctBlck')){
+               $('.popupBox').removeClass('popbgOpctBlck');
+          }
+          $('#centerLayerPopup:last()').find('#mask').show();
+     }
+}
+
+
+//각 팝업 열림  -
+function popOpn(){//오픈팝업
+  //btn_이 붙으면 그 팝업을 여는 버튼 아이디입니다.
+  var btn_polPrsnInfmSmll = $('#opnPop_polPrsnInfm_smll'); // 개인정보 수집 및 이용 동의 (필수) - 축소한 내용(예:회원가입시)
+  var polPrsnInfmSmll = $('#polPrsnInfm_smll'); // 개인정보 수집 및 이용 동의 (필수) - 축소한 내용(예:회원가입시)
+  var btn_polPrsnInfmChse = $('#opnPop_polPrsnInfm_chse'); // 개인정보 수집 및 이용 동의 (필수) - 축소한 내용(예:회원가입시)
+  var polPrsnInfmChse = $('#polPrsnInfm_chse'); // 개인정보 수집 및 이용 동의 (필수) - 축소한 내용(예:회원가입시)
+  var btn_polMrktInfChse = $('#opnPop_polMrktInf_chse'); // 마케팅동의버튼
+  var polMrktInfChse = $('#polMrktInf_chse'); // 마케팅동의 -
+
+  var btn_polPrsnInfm_3 = $('#opnPop_polPrsnInfm_3party'); // 제3자동의버튼
+  var polPrsnInfm_3 = $('#polPrsnInfm_3party'); // 제3자동의버튼
+
+  var btn_mom_Library = $('#opnPop_mom_Library');//엄마의서재
+  var mom_Library = $('#mom_Library'); // 엄마의서재
+
+  btn_mom_Library.click(function() {
+    mom_Library.addClass('openPop');
+    tableBx();
+  });
+
+  btn_polPrsnInfm_3.click(function() {
+    polPrsnInfm_3.addClass('openPop');
+    tableBx();
+  });
+
+  btn_polPrsnInfmSmll.click(function() {
+    polPrsnInfmSmll.addClass('openPop');
+    tableBx();
+  });
+  btn_polPrsnInfmChse.click(function() {
+    polPrsnInfmChse.addClass('openPop');
+    tableBx();
+  });
+  btn_polMrktInfChse.click(function() {
+    polMrktInfChse.addClass('openPop');
+    tableBx();
+  });
+}
+
+$(document).ready(function() {
+   popClose(); // 팝업 기본 닫힘 closePop
+   popOpn();//오픈팝업 openPop
+   todyOffClose();//오늘하루 안열기
+   nverOffClose();//다시열지않기
+   if(getCookie("todyOffBx") == "done"){
+     $(".todyOffBx").removeClass('openPop');
+     $(".todyOffBx").hide();
+   }
+
+   var strReturn;
+          //아래에 정의되어 있는 GetCookie()라는 함수를 호출하여 현재 쿠키값이 있는지 확인
+          strReturn = GetCookie('nvr_cookie');
+   if(strReturn == null || strReturn == '0'){
+   }else{
+          $(".nverOffBx").hide();
+          $(".nverOffBx").removeClass('openPop');
+   }
+});

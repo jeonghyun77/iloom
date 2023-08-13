@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일룸 서브 페이지</title>
+	<meta charset='utf-8'>
+	<meta name='Viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.6'>
+	<meta name='Title' content='일룸'>
+	<meta name='Subject' content='iloom'>
+	<meta name='Keywords' content='일룸, 가구, 인테리어, 침대, 소파'>
+	<meta name='Author' content='jeonghyun'>
+	<meta name='Publisher' content='jeonghyun'>
+	<meta name='Description' content='침대, 소파, 식탁 등 리빙 가구와 아이방, 펫가구까지 다양한 제품들로 꿈꾸던 생활을 시작해보세요.'>
+	<meta name='Author-Date' content='20220719'>
+	<meta name='Robots' content='index,follow'>
+
+
+	<link rel='stylesheet' href='css/reset.css'>
+	<link rel='stylesheet' href='css/sub1.css'>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+	<script src="./js/lib/jquery-1.12.4.min.js"></script>
+	<script src="./js/script2.js" defer></script>
+</head>
+<body>
+    <ul id="skip">
+        <li><a href="#header">헤더 바로가기</a></li>
+        <li><a href="#nav">메뉴 바로가기</a></li>
+        <li><a href="#content">내용 바로가기</a></li>
+    </ul>
+    <div class="button">
+        <button class="btnbot">챗봇</button>
+        <button class="btnbot">리뷰</button>
+    </div>
+    <div id="wrap">
+        <header id="head" class="header">
+            <div class="header-area">
+                <div class="gnb_item">
+                    <ul class="t_menu">
+                        <li><a href="#"><img src="./img/icon_menu_30px.svg" alt="menu"></a></li>
+                    </ul>
+                </div>
+                <div class="search">
+                    <div class="search_input">
+                        <input class="search_bar" type="text" placeholder="검색어를 입력해주세요.">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>	
+                <div class="gnb_logo">
+                    <a href="#" onclick="location.href='index.html'"><img src="./img/gnb_logo.png" alt="logo"></a>
+                </div>
+                <div class="gnb_menu">
+                    <ul>
+                        <li><a href="#" onclick="location.href='login.html'"><img src="./img/user-solid.png" alt="login"> 로그인</a></li>
+                        <li><a href="#" onclick="location.href='login.html'">주문/배송</a></li>
+                        <li><a href="#" onclick="location.href='index1.html'">고객지원</a></li>
+                        <li><a href="#">매장안내</a></li>
+                    </ul>
+                </div>
+            </div><!-- pc -->
+            <div class="mobile">
+                <div class="m_header">
+                    <div class="mobile-item">
+                        <img src="./img/icon_menu_30px (moblie).png" alt="menu_m">
+                    </div>
+                    <div class="logo_m">
+                        <img src="./img/gnb_logo.png" alt="mobile-logo">
+                    </div>
+                    <div class="search_moblie">
+                        <i class="fas fa-user"></i>
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                </div >
+            </div>
+        </header>
+        <div id="container">
+            <h1>고객지원 안내</h1>
+            <div class="nav">
+                <p>고객지원</p>
+               <ul>
+                  <li><a href="#">고객지원 안내</a></li>
+                  <li><a href="#">공지사항</a></li>
+                  <li><a href="#">카탈로그</a></li>
+                  <li><a href="#">FAQ</a></li>
+                  <li><a href="#">상담문의</a></li>
+                  <li><a href="#">제휴/홍보 제안</a></li>
+               </ul>
+            </div>
+        </div>
+        <section>
+            <div class="body">
+                    <div class="customer">
+                        <ul class="log">
+                            <li><a href="#" class="btn inotice">공지사항</a></li>
+                            <li><a href="#" class="btn ictlog">카탈로그</a></li>
+                            <li><a href="#" class="btn ifaq">FAQ</a></li>
+                            <li><a href="#" class="btn icun">상담문의</a></li>
+                            <li><a href="#" class="btn ipro">제휴/홍보 제안</a></li>
+                        </ul>
+                    </div>
+                    <div class="content">
+                        <li>
+                            <dl>
+                                <dt>서비스 신청 및 문의</dt>
+                                <dd>일룸 제품관련 A/S, 분해/이동 서비스 신청 및 문의는</dd>
+                                <dd>일룸 서비스센터 사이트를 이용해주세요.</dd>
+                            </dl>
+                            <a href="#">서비스 센터 바로가기</a>
+                         </li>
+                         
+                        <li>
+                            <dl>
+                                <dt>매장 문의</dt>
+                                <dd>매장에서 구매하신 제품의 배송문의, 주문내용 변경 등은 <br> 해당 대리점에서 문의 가능합니다.<br> 매장 운영시간은 매장 안내에서 확인하실 수 있습니다.</dd>
+                            </dl>
+                            <a href="#">매장 안내 바로가기</a>
+                        </li>
+                </div>
+            </div>
+ 
+        </section>
+
+        <footer id="footer" class="footer-area">
+            <ul class="footer-inner">
+                <div class="footer-inner-box">
+                        <div class="ft_inner"><img src="./img/footer_logo.png" alt="footerlogo"></div>
+                        <div class="ft_inner">
+                            <ul>
+                                <li class="footer-top">ABOUT</li>
+                                <li class="footer-top-i">회사소개</li>
+                                <li class="footer-top-i">매장안내</li>
+                                <li class="footer-top-i">인재채용</li>
+                            </ul>	
+                        </div> 
+                        <div class="ft_inner">
+                            <ul>
+                                <li class="footer-top">SUPPORT</li>
+                                <li class="footer-top-i">고객지원</li>
+                                <li class="footer-top-i">서비스센터</li>
+                                <li class="footer-top-i">대리점 개설안내</li>
+                            </ul>	
+                        </div> 
+                        <div class="ft_inner">
+                            <ul>
+                                <li class="footer-top">INFO</li>
+                                <li class="footer-top-i">이용약관</li>
+                                <li class="footer-top">개인정보 처리방침</li>
+                            </ul>
+                        </div> 
+                        <div class="c_inner">
+                            <ul>
+                                <dl>
+                                    <dt>빠른상담 문의</dt>
+                                    <dt><a href="#"><img src="./img/chatbot.png" alt="chatbot"></a></dt>
+                                </dl>
+                                <dl>
+                                    <dt>서비스 문의 신청</dt>
+                                    <dt><a href="#"><img src="./img/baro.png" alt="baro"></a></dt>
+                                </dl>
+                                <dl>
+                                    <dt>고객센터 전화문의</dt>
+                                    <dt>
+                                        <span>1577-5670</span>
+                                        <br>
+                                        <span>9:30 ~ 17:30 (점심시간 12:30 ~ 13:30)</span>
+                                        <br>
+                                        <span>9:30 ~ 12:30 (쇼핑몰 구매상담 제외)</span>
+                                    </dt>
+                                </dl>
+                            </ul>
+                        </div> 
+                </div>
+            </ul>
+            <ul class="footer-bottom">
+                <div class="sns">
+                    <img src="./img/footer_i.png" alt="instagram">
+                    <img src="./img/footer_f.png" alt="facebook">
+                    <img src="./img/footer_b.png" alt="blog">
+                </div>
+                <div class="ft_bottom">
+                    <p>서울시 송파구 오금로 311 (오금동45-1) (주)일룸 ·대표이사 강성문</p>
+                    <p>개인정보보호 책임자 : 강성문</p>
+                    <p>사업자등록번호 : 215-86-93600·통신판매업신고 : 2009-서울송파-0069호·부가통신사업신고필증 : 021129</p>
+                    <p>호스팅 서비스사업자 · (주)일룸</p>
+                    <p>webmaster@iloom.com·Copyright (c) 2018 iloom lnc. All rights reserved</p>	
+                </div> 
+                <div class="mark">
+                    <img src="./img//mark_1.png" alt="mark1">
+                    <img src="./img//mark_2.png" alt="mark2">
+                    <img src="./img//mark_3.png" alt="mark3">
+                    <img src="./img//mark_4.png" alt="mark4">
+                </div>
+            </ul>
+        </footer>
+
+        <div id="modal">
+            <div id="popup_menu">
+                <div class="close closeBtn"><img src="./img/icon_closeBtn.svg" alt="closeBtn"></div>
+                <div class="popup-line"></div>
+                <div class="inner_line" style="height:737px; left: 123px;"></div>
+                <div class="inner_line" style="height:737px; left: 246px;"></div>
+                <div class="inner_line" style="height:737px; left: 369px;"></div>
+                <div class="inner_line" style="height:737px; left: 492px;"></div>
+                <div class="inner_line" style="height:737px; left: 615px;"></div>
+                <div class="inner_line" style="height:737px; left: 738px;"></div>
+                <div class="all_menu">
+                    <div class="all_menuheade">침실</div>
+                    <div class="all_menubody">침대</div>
+                    <ul>
+                        <li>모션베드</li>
+                        <li>일반침대</li>
+                        <li>패밀리침대</li>
+                        <li>매트리스</li>
+                        <li>액세서리</li>
+                    </ul>
+                    
+                    <div class="all_menubody">매트리스</div>
+                    <ul>
+                        <li>매트리스</li>
+                        <li>커버/프로텍터</li>
+                    </ul>
+                    
+                    <div class="all_menubody">옷장</div>
+                    <ul>
+                        <li>옷장/붙박이장</li>
+                        <li>드레스룸</li>
+                        <li>수납가구/ACC</li>
+                    </ul>
+                </div>
+                <div class="all_menu">
+                    <div class="all_menuheade">거실</div>
+                    <div class="all_menubody">테이블</div>
+                    <ul>
+                        <li>소파테이블</li>
+                        <li>패밀리테이블</li>
+                        <li>멀티테이블</li>
+                        <li>액세서리</li>
+                    </ul>
+                    
+                    <div class="all_menubody">거실장</div>
+                    <ul>
+                        <li>거실장</li>
+                    </ul>
+                    
+                    <div class="all_menubody">소파</div>
+                    <ul>
+                        <li>일자형</li>
+                        <li>카우치/코너</li>
+                        <li>1인/소파베드</li>
+                        <li>리클라이너</li>
+                        <li>액세서리</li>
+                    </ul>
+                </div>
+                <div class="all_menu">
+                    <div class="all_menuheade">주방</div>
+                    <div class="all_menubody">식탁</div>
+                    <ul>
+                        <li>식탁</li>
+                    </ul>
+                    
+                    <div class="all_menubody">수납장</div>
+                    <ul>
+                        <li>수납장</li>
+                        <li>액세서리</li>
+                    </ul>
+                    
+                    <div class="all_menubody">의자</div>
+                </div>
+                <div class="all_menu">
+                    <div class="all_menuheade">키즈룸</div>
+                    <div class="all_menubody">침대</div>
+                    <ul>
+                        <li>침대</li>
+                        <li>매트리스</li>
+                        <li>액세서리</li>
+                    </ul>
+                    
+                    <div class="all_menubody">책상</div>
+                    <ul>
+                        <li>책상</li>
+                        <li>액세서리</li>
+                    </ul>
+                    <div class="all_menubody">수납장</div>
+                    <ul>
+                        <li>서랍/수납장</li>
+                        <li>책장</li>
+                        <li>옷장/행거</li>
+                        <li>놀이장</li>
+                    </ul>
+                    
+                    <div class="all_menubody">소파/의자</div>
+                    <ul>
+                        <li>소파</li>
+                        <li>의자</li>
+                    </ul>
+                    <div class="all_menubody">액세서리</div>
+                </div>
+                <div class="all_menu">
+                    <div class="all_menuheade">학생방</div>
+                    <div class="all_menubody">책상</div>
+                    <ul>
+                        <li>일반형</li>
+                        <li>기능형</li>
+                        <li>액세서리</li>
+                    </ul>
+                    
+                    <div class="all_menubody">책상</div>
+                    <ul>
+                        <li>책장</li>
+                        <li>액세서리</li>
+                    </ul>
+                    <div class="all_menubody">수납장</div>
+                    <ul>
+                        <li>서랍장</li>
+                        <li>옷장</li>
+                        <li>수납가구/ACC</li>
+                    </ul>
+                    
+                    <div class="all_menubody">의자</div>
+                    <ul>
+                        <li>의자</li>
+                        <li>액세서리</li>
+                    </ul>
+    
+                    <div class="all_menubody">침대</div>
+                    <ul>
+                        <li>모션베드</li>
+                        <li>일반침대</li>
+                        <li>패밀리침대</li>
+                        <li>매트리스</li>
+                        <li>액세서리</li>
+                    </ul>
+                </div>
+    
+                <div class="all_menu">
+                    <div class="all_menuheade">서재</div>
+                    <div class="all_menubody">책상</div>
+                    <ul>
+                        <li>일반형</li>
+                        <li>모션형</li>
+                        <li>액세서리</li>
+                    </ul>
+                    
+                    <div class="all_menubody">책상</div>
+                    <ul>
+                        <li>책장</li>
+                        <li>액세서리</li>
+                    </ul>
+                    <div class="all_menubody">서랍장</div>
+                    <ul>
+                        <li>책상서랍</li>
+                    </ul>
+                    
+                    <div class="all_menubody">의자</div>
+                    <ul>
+                        <li>테스크의자</li>
+                        <li>프리미엄의자</li>
+                        <li>보조의자</li>
+                    </ul>
+    
+                    <div class="all_menubody">수납장</div>
+                    <ul>
+                        <li>장식장</li>
+                    </ul>
+                </div>
+                <div class="all_menu">
+                    <div class="all_menuheade">펫</div>
+                    <div class="all_menubody">가구</div>
+                    <ul>
+                        <li>가구</li>
+                        <li>액세서리</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="m_modal">
+            <div class="m_popup_menu">
+                <img src="./img/xmark-solid.svg" alt="close">
+                <input type="search" name="SEARCH" placeholder="SEARCH">
+                <ul class="big_menu">
+                    <li>모든제품<i class="arrow fas fa-angle-right"></i></li>
+                    <ul class="small_menu">
+                        <li><a href="#">침실</a></li>
+                        <li><a href="#">거실</a></li>
+                        <li><a href="#">주방</a></li>
+                        <li><a href="#">키즈룸</a></li>
+                        <li><a href="#">학생방</a></li>
+                        <li><a href="#">서재</a></li>
+                        <li><a href="#">팻</a></li>
+                    </ul>
+                </ul>
+                <ul class="big_menu">
+                    <li>매거진</li>
+                </ul>
+                <ul class="big_menu">
+                    <li>아울렛</li>
+                </ul>
+                <ul class="big_menu">
+                    <li>부품구매</li>
+                </ul>
+                <p>이벤트</p>
+                <p>뉴스</p>
+                <p>고객지원</p>
+                <p>카탈로그</p>
+                <p>매장안내</p>
+                <p>시리즈</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

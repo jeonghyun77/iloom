@@ -1,0 +1,372 @@
+//2020.12 고객후기프로젝트부터 프론트엔드 이벤트
+
+// 세자리수 콤마찍기 - 읽기 전용
+function cmma() {
+	$('.nmCmma').each(function() {
+		var employ = $(this).val();
+		var cmmaVal = "";
+		employ = employ.replace(/,/g, '');
+		for (var i = 1; i <= employ.length; i++) {
+			if (i > 1 && (i % 3) == 1) {
+				cmmaVal = employ.charAt(employ.length - i) + "," + cmmaVal;
+			} else {
+				cmmaVal = employ.charAt(employ.length - i) + cmmaVal;
+			}
+		}
+		$(this).val(cmmaVal);
+	});
+}
+// 인풋 넓이 조절을 위한 금액을 span에 보이기
+function innmbr() {
+	$('.innmbr').each(function() {
+		var innmbr = $(this).val();
+		$(this).prev('.numTxt').text(innmbr);
+	});
+}
+//박스에 맞춰 사진을 중앙으로 배치1
+function sqrCntrImg() {
+	$('.sqrCntr .img > .photo').each(function() {
+		var ths = $(this);
+		var thsWdth = 0;
+		var thsHght = 0;
+		ths.load(function() {
+			thsWdth = ths.width();
+			thsHght = ths.height();
+			if (thsWdth > thsHght) {
+				ths.addClass('hpht');
+			}else{
+				ths.addClass('wpht');
+			}
+		});
+	});
+}
+//이미지 리스트박스에 맞춰 사진을 중앙으로 배치1
+function imbLstbtnImg() {
+	$('.btnImg .photo').each(function() {
+		var btnImg = $(this);
+		btnImg.removeClass('hpht');
+		btnImg.removeClass('wpht');
+		var biWdth = btnImg.width();
+		var biHght = btnImg.height();
+		if (biWdth > biHght) {
+			btnImg.addClass('hpht');
+		} else {
+			btnImg.addClass('wpht');
+		}
+	});
+}
+//상품평 갯수
+function photoRvwNbrChck(reviewNumber) {
+	if (reviewNumber > 0) {
+		$('.lstNbrChck').text("(" + reviewNumber + ")");
+	}
+}
+//빈줄 삭제
+function removePre() {
+	$('pre code').each(function(index) {
+		var html = $(this).html();
+		var re = /^\s(.*)/;
+		var newHtml = html.replace(re, '$1');
+		$(this).html(newHtml);
+	});
+}
+//리스트 내용 더보기
+function readMoreInfo() {
+	$('.readOnOffBx').each(function() {
+		var readbx = $(this);
+		var readbxHght = readbx.find('.rlBx').innerHeight();
+		var maxHght = readbx.css('max-height').replace('px', '');
+		var more = readbx.next('.readMore');
+		if (readbxHght <= maxHght) {
+			more.hide();
+		} else {
+			more.show();
+		}
+	});
+	$('.readMore').off('click').click(function() {
+		var readMore = $(this);
+		var readbx = readMore.prev('.readOnOffBx');
+		readbx.toggleClass('opn');
+		if (readbx.hasClass('opn')) {
+			readMore.text('닫기');
+		} else {
+			readMore.text('더보기');
+		}
+	});
+}
+
+//상품평 이미지리스트있을경우 이미지여러장 아이콘
+function inImgs() {
+	$('.nwReviewBx').each(function() {
+		var nwRvwBx = $(this);
+		var imgLst = nwRvwBx.find('.imgLst');
+		var btnImg = imgLst.find('.btnImg');
+		if (btnImg.length > 1) {
+			nwRvwBx.addClass('inimgs');
+		} else {
+			nwRvwBx.removeClass('inimgs');
+		}
+	});
+}
+//상품평 이미지 리스트 클릭시
+function imgLstClck() {
+	$('.imgLst .btnImg').click(function() {
+		var btnImg = $(this);
+		var btnSrc = $(this).find('.photo').attr('src');
+		var box = btnImg.parents('.nwReviewBx');
+		var view = box.find('.img > .photo');
+		view.removeClass('hpht');
+		view.removeClass('wpht');
+		view.attr('src', btnSrc);
+		var thsWdth = view.width();
+		var thsHght = view.height();
+		if (thsWdth > thsHght) {
+			view.addClass('wpht');
+		} else {
+			view.addClass('hpht');
+		}
+	});
+}
+
+
+//상품평 팝업오픈- 코칭마크
+function opnPopRevw() {
+	var img = $('.pop_viewReview .nwReviewBx.sqrCntr .img > .photo');
+	$('.opnPopRevw').click(function() {
+		$('.pop_viewReview').addClass('openPop');
+		$('.pop_viewReview').addClass('_inCachMrk');
+		img.removeClass('hpht');
+		img.removeClass('wpht');
+		$('body').addClass('ovtFlwHddn');
+		setTimeout(function() {
+			$('.pop_viewReview').removeClass('_inCachMrk');
+		}, 3400);
+		imbLstbtnImg();
+	});
+}
+//상품평쓰기 팝업오픈
+function opnPopuplrdReview() {
+	//마이페이지 상품평 작성을 위해 reviewBtn클래스에도 이벤트 추가
+	//마이페이지에서 작성 완료된 경우를 제외 하기 위해 not함수 사용
+	//not에 .completed적용
+	$('.opnPopuplrdRevw, .reviewBtn').not('.completed, .disabled').click(function() {
+		txtAraBx();
+		$('.pop_uplrdReview').addClass('openPop');
+		$('body').addClass('ovtFlwHddn');
+	});
+}
+
+//상품평 작성하는 창 표시하는 함수
+function openReviewWriter() {
+	txtAraBx();
+	$('.pop_uplrdReview').addClass('openPop');
+	$('body').addClass('ovtFlwHddn');
+}
+
+//상품평 수정하는 창 표시하는 함수
+function openReviewModifier() {
+	txtAraBx();
+	$('.pop_uplrdReview').addClass('openPop _mdfy');
+	$('body').addClass('ovtFlwHddn');
+}
+
+//textarea 브라우져별 placeholder 문제 해결
+function txtAraBx() {
+	if ($('.frm_TxtAraBx').length > 0) {
+		var txtara = $('.frm_TxtAraBx textarea');
+		if (txtara.val().length > 0) {
+			var bx = $(this).parent();
+			$(this).next('.frm_plchldr').hide();
+			bx.removeClass('on');
+		} else {
+			$(this).next('.frm_plchldr').show();
+		}
+
+		txtara.on('propertychange change keyup paste input', function() {
+			if (txtara.val().length > 0) {
+				var bx = $(this).parent();
+				$(this).next('.frm_plchldr').hide();
+				bx.removeClass('on');
+			} else {
+				$(this).next('.frm_plchldr').show();
+			}
+		});
+
+		txtara.blur(function() {
+			var bx = $(this).parent();
+			if ($(this).val().length > 0) {
+				$(this).next('.frm_plchldr').hide();
+				bx.removeClass('on');
+			} else {
+				$(this).next('.frm_plchldr').show();
+			}
+		});
+	}
+}
+function hidePlaceholder(target) {
+	var bx = target.parent();
+	target.next('.frm_plchldr').hide();
+	bx.removeClass('on');
+}
+//별점 체크
+function starChck() {
+	$('.starGrdChckLst').each(function() {
+		var strBox = $(this);
+		var str = strBox.find('.star');
+		var strChck1 = strBox.find('.star.grd1');
+		var strChck2 = strBox.find('.star.grd2');
+		var strChck3 = strBox.find('.star.grd3');
+		var strChck4 = strBox.find('.star.grd4');
+		var strChck5 = strBox.find('.star.grd5');
+		strChck1.click(function() {
+			$('.starGrdChckLst').find('.star').removeClass('stron stroff');
+			$('.starGrdChckLst').removeClass('grdChck1 grdChck2 grdChck3 grdChck4 grdChck5');
+			var strBox = $(this).parents('.starGrdChckLst');
+			setTimeout(function() {
+				strBox.addClass('grdChck1');
+				strChck1.addClass('stron');
+				strChck2.addClass('stroff');
+				strChck3.addClass('stroff');
+				strChck4.addClass('stroff');
+				strChck5.addClass('stroff');
+			}, 100);
+		});
+		strChck2.click(function() {
+			$('.starGrdChckLst').find('.star').removeClass('stron stroff');
+			$('.starGrdChckLst').removeClass('grdChck1 grdChck2 grdChck3 grdChck4 grdChck5');
+			var strBox = $(this).parents('.starGrdChckLst');
+			setTimeout(function() {
+				strBox.addClass('grdChck2');
+				strChck1.addClass('stron');
+				strChck2.addClass('stron');
+				strChck3.addClass('stroff');
+				strChck4.addClass('stroff');
+				strChck5.addClass('stroff');
+			}, 100);
+		});
+		strChck3.click(function() {
+			$('.starGrdChckLst').find('.star').removeClass('stron stroff');
+			$('.starGrdChckLst').removeClass('grdChck1 grdChck2 grdChck3 grdChck4 grdChck5');
+			var strBox = $(this).parents('.starGrdChckLst');
+			setTimeout(function() {
+				strBox.addClass('grdChck3');
+				strChck1.addClass('stron');
+				strChck2.addClass('stron');
+				strChck3.addClass('stron');
+				strChck4.addClass('stroff');
+				strChck5.addClass('stroff');
+			}, 100);
+		});
+		strChck4.click(function() {
+			$('.starGrdChckLst').find('.star').removeClass('stron stroff');
+			$('.starGrdChckLst').removeClass('grdChck1 grdChck2 grdChck3 grdChck4 grdChck5');
+			var strBox = $(this).parents('.starGrdChckLst');
+			setTimeout(function() {
+				strBox.addClass('grdChck4');
+				strChck1.addClass('stron');
+				strChck2.addClass('stron');
+				strChck3.addClass('stron');
+				strChck4.addClass('stron');
+				strChck5.addClass('stroff');
+			}, 100);
+		});
+		strChck5.click(function() {
+			$('.starGrdChckLst').find('.star').removeClass('stron stroff');
+			$('.starGrdChckLst').removeClass('grdChck1 grdChck2 grdChck3 grdChck4 grdChck5');
+			var strBox = $(this).parents('.starGrdChckLst');
+			setTimeout(function() {
+				strBox.addClass('grdChck5');
+				strChck1.addClass('stron');
+				strChck2.addClass('stron');
+				strChck3.addClass('stron');
+				strChck4.addClass('stron');
+				strChck5.addClass('stron');
+			}, 100);
+		});
+	});
+}
+//핸드폰 번호 인풋박스 자동 옮김
+function phnNmbrBxChck() {
+	$('.phnNmbrBx').each(function() {
+		var bx1 = $(this).find('.dfInptbx:eq(0)');
+		var bx2 = $(this).find('.dfInptbx:eq(1)');
+		var bx3 = $(this).find('.dfInptbx:eq(2)');
+		//if(bx1.val().length >= 3){
+		//	bx2.focus();
+		//}
+		bx1.keyup(function() {
+			if (bx1.val().length >= 3) {
+				bx2.focus();
+			}
+		});
+		bx2.keyup(function() {
+			if (bx2.val().length >= 4) {
+				bx3.focus();
+			}
+		});
+	});
+}
+
+//메뉴클릭시 on 추가
+function ctgrMenu() {
+	var ctgr = $('.ctgrMenu .ctgr > a');
+	ctgr.click(function(event) {
+		ctgr.removeClass('on');
+		$(this).addClass('on');
+	});
+}
+//하트 누르기
+function likeHrt() {
+	$('.likeHrt').click(function() {
+		var i = 1;
+		var likeHrt = $(this);
+		var likeText = likeHrt.text();
+		var likeNmbr = Number(likeText);
+		likeHrt.toggleClass('on');
+		if (likeHrt.hasClass('on')) {
+			likeHrt.text(likeNmbr + i);
+		} else {
+			likeHrt.text(likeNmbr - i);
+		}
+
+	});
+
+}
+
+//리스트 정렬 최신순,인기순
+function lstSlct() {
+	$('.lstSlct li').click(function() {
+		var lstSlct = $(this);
+		$('.lstSlct li').removeClass('on');
+		lstSlct.addClass('on');
+	});
+
+}
+//서브카테고리 메뉴 클릭시 색상 변경 - 예-고객후기페이지
+function subctgrMenu() {
+	$('.ctgrMenu .ctgr').click(function(event) {
+		var ctgr = $(this).find('a');
+		$('.ctgrMenu .ctgr a').removeClass('on');
+		ctgr.addClass('on');
+	});
+
+}
+//서브카테고리 스크롤시 위치 변경
+$(window).on('scroll', scllRevwPage);
+function scllRevwPage() {
+	var top = $(window).scrollTop();
+	var scrll = $('.reviewLst');
+	if(!scrll||!scrll.offset()){
+		return;
+	}
+	var revwctgr = $('.reViewCtgr');
+	if (top + 91 >= scrll.offset().top - 165) {
+		revwctgr.addClass('scllTop');
+	} else {
+		revwctgr.removeClass('scllTop');
+	}
+}
+
+//
+function uplrdReview_alrt() {
+}

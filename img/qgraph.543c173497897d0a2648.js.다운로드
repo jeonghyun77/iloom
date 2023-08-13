@@ -1,0 +1,52 @@
+window.QGSettings = {
+   "origin": "https://www.iloom.com/",
+   "personalizationEnabled": true,
+   "vapidPublicKey": "BF9iXS-hv5ayLMzJFFgB4DD4o4SVDHQu8stUetAI8T5AU5Edw2zGEscd0FH0u3BEESdTfiIDopysZUHCjsZfqt0",
+   "inWebEnabled": true,
+   "push": {
+      "useNotifyEndpoint": false,
+      "restrictOrigin": false,
+      "allowedPushDomains": null,
+      "requestSelf": false,
+      "delay": 5,
+      "fakePrompt": false,
+      "onSubscribedPopup": {
+         "enabled": false,
+         "showOverlay": true,
+         "htmlBody": ""
+      },
+      "secondsBetweenPrompts": 3600,
+      "optInTip": {
+         "title": "Stay tuned to the latest Offers and News",
+         "message": "Turn on notifications with these simple steps:\n 1. Click the icon on the address bar as shown in the example above.\n 2. Allow notifications.",
+         "bgColor": "#FFFFFF",
+         "textColor": "#000000",
+         "location": "right",
+         "overlay": true
+      },
+      "optInTipEnabled": false
+   },
+   "qgendpoint": "https://.aiqua.io/notify.html",
+   "appId": "543c173497897d0a2648",
+   "debug": false
+};
+if(window.qg && window.qg.queue) {
+    window.qg.queue.unshift(('init', QGSettings));
+}
+!function(q,g,r,a,p,h,js){
+    if(!q.qg){
+        js=q.qg=function() {
+            js.callmethod ? js.callmethod.call(js, arguments) : js.queue.push(arguments);
+            js.queue = [];
+        }
+    }
+    if(q.qg.initialized){return;}
+    window.qg.queue.unshift(['init',window.QGSettings])
+    p=g.createElement(r);
+    p.async=!0;
+    p.src=a;
+    h=g.getElementsByTagName(r)[0];
+    h.parentNode.insertBefore(p,h);
+    q.qg.initialized = true;
+}(window,document,'script','//cdn.qgraph.io/v3/r/aiqua.js');
+
