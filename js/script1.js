@@ -1,23 +1,39 @@
 //로그인 
-
-
 function create_id() {
 	var id = document.querySelector('#userID');
 	var pw = document.querySelector('#userPWD');
 
-	if(id.value == "" || pw.value == "") {
-		alert("다시 로그인 해주세요.")
-		console.log()
+	if(!id.value) {
+		alert("아이디를 입력해주세요.")
+		id.focus();
+		return
+	}
+	if(!pw.value){
+		alert('비밀번호를 입력해주세요.')
+		pw.focus();
+		return
 	}
 	else{
-		location.href = 'main.html';
+		location.href = 'index.html';
 	}
 }
 
+//더보기 버튼
+$(function(){
+	$('.button-m').slice(0,1).show();
+	$('.more-bnt').click(function(e){
+		e.preventDeafault();
+		$
+	})
+});
 
 
 
-//팝업창
+
+
+
+
+//팝업창jquery
 
 $(function(){
 	$(".gnb_item>ul>li>a>img").click(function(){

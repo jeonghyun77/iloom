@@ -22,8 +22,9 @@ a{font-weight: bold;}
 .header .header-area .gnb_menu ul li{display: inline-flex; line-height: 40px ; align-items: center; margin-right: 10px; font-size: 13px; font-weight: 300;}
 
 
-.search{width: 475px; height: 100%;} 
-.search .search_bar{ width: 445px; height: 25px; background: #d4d4d4; border-radius: 10px;  border-style: none;} 
+.search{width: 100%; height: 100%; padding-left: 10px;} 
+.search .search_bar{ width: 30vw; height: 25px; background:none; border: none; border-bottom: 2px solid #4d4d4d;} 
+.search .search_bar:focus{outline: none;}
 .search .search_bar::placeholder{font-size: 11px; padding: 10px;}
 .search .fa-search{font-size: 13px; margin-top: 9px; padding-left: 5px;}
 
@@ -102,16 +103,17 @@ body {
 
 /* container */
 .best{width: 100%; height: 100%; }
-.best ul{width: 200px; height: 100%; margin: 0 auto; padding: 43px 0px 6px 0px;}
+.best ul{width: 200px; height: 100%; margin: 0 auto; padding: 84px 0px 6px 0px;}
 .best ul li{font-size: 20px; color: #000; }
 
 .container{ display: flex; justify-content: center; max-width: 1700px; margin: 0 auto;}
-.container .bannner{width: 20%;  float: left; max-width: 1400px;}
+.container .bannner{width: 40%;  float: left; max-width: 1400px;} 
+
 .container .bannner img{width: 100%; padding: 5px 5px; box-sizing: border-box; transition: 0.5s;}
 
 
 .button-m{width: 100px; margin: 0 auto;}
-.more-bnt{width: 100px; height: 40px; border: 2px solid rgb(255, 115, 0); background: none; color: #474141; border-radius: 10px; font-weight: 700; font-size: 12px;}
+.more-bnt{width: 80px; height: 30px; border: none; background: rgb(0, 0, 0); color: #ffffff; border-radius: 10px; font-weight: 700; font-size: 10px;}
 .more-bnt:hover{background: rgb(255, 115, 0);}
 
 
@@ -125,6 +127,7 @@ body {
 
 /* quick-menu */
 #quick{width: 100%;}
+
 #quick .menu{text-align: center; padding-top: 45px;}
 #quick .quick-box{display: flex; justify-content: space-between; width: 800px; line-height: 25px; margin: 0 auto; padding-top: 58px;}
 
@@ -147,18 +150,16 @@ body {
 .notice-area .notice-wrap .notice-box p .date{font-size: 14px; color: #aaa; font-weight: 500;}
 
 /* 더보기버튼 */
-.n-bnt{width: 200px; height: 40px;border: 2px solid #757575; background: none; color: #757575;  font-weight: 700; font-size: 12px;}
+.n-bnt{width: 200px; height: 40px;border: 2px solid #bcbcbc; background: none; color: #757575;  font-weight: 700; font-size: 12px;}
 .n-bnt:hover{background:#c2c2c2;}
-
-
 
 
 
 /* instargram-area */
 #instargram{background: #FFD0D0; width: 100%; height: 400px; margin: 0 auto;}
 #instargram .instargram_m{text-align: center; font-size: 20px; padding: 25px 0px; }
-#instargram  ul{display: flex; width: 1192px; height: 205px;  margin: 0 auto; justify-content: space-between;}
-#instargram  ul li a img{width: 200px; height: 200px;}
+#instargram  ul{display: flex; margin: 0 auto; justify-content: space-between;}
+#instargram  ul li a img{width: 19vw; height: 35vh;}
 
 
 /* footer */
@@ -237,67 +238,22 @@ input[type="search"] {
 
 
 /* 데스크탑 크기 */
-
-
 @media screen and (max-width: 1570px) {
   .mobile{display: none;}
 } 
 
 
-@media screen and (max-width: 1410px) {
-  .instargram-area ul{width: 100%;}
-}
-
-
 @media screen and (max-width: 1268px) {
   .best ul li{font-size: 18px; color: #000; }
-  .instargram-area ul li a img{width: 130px;height: 130px;}
   
 }
 
-
-
-@media screen and (max-width: 1219px) {
-
-  #instargram{width: 100%; height: 376px; }
-  #instargram  ul{display: flex; width: 1000px;}
-  #instargram  ul li a img{width: 180px; height: 180px;}
-}
-
-
-
-
-/* 태블릿 가로 */
-@media screen and (max-width: 1181px) {
-  
-  #instargram{width: 100%; height: 304px; }
-  #instargram .instargram_m {font-size: 6px; padding: 16px 0px;}
-  #instargram  ul{width: 900px; }
-  #instargram  ul li a img{width: 150px; height: 150px;}
-}
-
-
-@media screen and (max-width: 1094px) {
- 
-  
-  .instargram-area ul li a img{width: 100px;height: 100px;}
-  
-.search .search_bar {width: 364px;}
-    
-}
-
-
-@media screen and (max-width: 912px) {
-  .search .search_bar { width: 326px;}
-    
-}
 
 
 
 /* 태블릿 세로 */
 @media screen and (max-width: 820px) {
     
-
   .header{width: 820px; height: 100%; justify-content: space-between;}
   .header .header-area{ width: 805px; height: 100%;}
   .header .header-area .gnb_item{width: 34px; height: 40px;}
@@ -307,21 +263,11 @@ input[type="search"] {
   .header .header-area .gnb_item:first-child .t_menu li:first-child{display: inline-flex; width: 10px; height: 20px; margin-right: 11px; align-items: center;}
   .header .header-area .gnb_item:first-child .t_menu li{display: inline-block; line-height: 20px ; align-items: center; margin-right: 10px; font-size: 8px;}
   .header .header-area .gnb_menu ul li{font-size: 8px; display: inline-flex; font-weight: 300;}
- 
-  
-
-  .header .header-area .search{width: 263px; display: block;}
-  .header .header-area .search .search_bar{ width: 223px;} 
-  
 
   .card ul{display: flex; justify-content: space-between; }
   .card ul li a img{width: 100%; height: 100%; }
 
   .notice-area .notice-wrap .notice-box{display: flex; justify-content: space-between; width: 588px ;margin: 0 auto; padding: 29px;}
-
-
-  #instargram  ul{display: flex; width: 745px; height: 157px;}
-  #instargram ul li a img {width: 138px; height: 146px;}
 
 
   .footer-area .footer-inner {width: 1216px; padding: 23px 20px 30px;}
@@ -345,21 +291,10 @@ input[type="search"] {
 }
 
 @media screen and (max-width: 768px) {
-    
-
   .header .header-area .gnb_menu {position: absolute; right: 0;}
   .header .header-area .gnb_item{display: inline-flex; height: 40px; align-items: center;}
   .header .header-area .gnb_logo{position: absolute; left: calc(48%);}
-  
-
  
-
-  .header .header-area .search{width: 263px; display: block;}
-  .header .header-area .search .search_bar{ width: 223px;} 
- 
-
-  #instargram  ul{display: flex; width: 700px; height: 282px;  margin: 0 auto;}
-
 
 
   #quick .quick-box {width: 634px; line-height: 25px; margin: 0 auto; } 
@@ -392,7 +327,7 @@ input[type="search"] {
   #quick .quick-box .txt {text-align: center; font-size: 11px; font-weight: 500;}
 
 
-  .more-bnt {width: 50px;height: 20px;border: 2px solid rgb(255, 115, 0); background: none;color: #474141; border-radius: 5px; font-weight: 300; font-size: 8px;}
+  .more-bnt {width: 50px;height: 20px;border-radius: 5px; font-weight: 300; font-size: 8px;}
   .button-m {width: 48px; margin: 0 auto;}
 
   .notice-area { width: 393px; height: 100%; text-align: center; margin: 0 auto; padding: 83px 0 30px;}

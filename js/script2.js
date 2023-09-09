@@ -1,5 +1,4 @@
-//팝업창
-
+//메뉴 팝업창 열기 닫기
 $(function(){
 	$(".gnb_item>ul>li>a>img").click(function(){
 		$("#modal").fadeIn();
@@ -11,7 +10,7 @@ $(function(){
 });
 
 
-//모바일 팝업창
+//모바일 메뉴 팝업창
 $(function () {
 	$(".m_modal").hide();
 	$(".m_header>.mobile-item>img").click(function () {

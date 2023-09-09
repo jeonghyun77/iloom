@@ -128,25 +128,11 @@
                             <button disabled id="completion" onclick="checkCompletion()">인증확인</button>
                         </div>
                          <div class="addressbox">
-                              <!--   <td>주소</td>
-                                <td>
-                                    <input type="text" name="woopyeon" id="woopyeon" placeholder="우편번호"> <button onclick="PostCodeSearch()">우편번호 찾기</button>
-                                    <br> <input type="text" name="doro" id="doro" placeholder="도로 주소"> <input type="text" name="jibeon" id="jibeon" placeholder="지번 주소">
-                                </td> -->
-                                <div class="form-group">                   
-                                    <input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="addr1" id="addr1" type="text" readonly="readonly" >
-                                        <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 주소검색</button>                               
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" style="top: 5px;" placeholder="도로명 주소" name="addr2" id="addr2" type="text" readonly="readonly" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="상세주소" name="addr3" id="addr3" type="text"  />
-                                    </div>
-                                </div>
-                                    
+                            <input type="text" id="sample6_postcode" placeholder="우편번호">
+                            <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                            <input type="text" id="sample6_address" placeholder="주소"><br>
+                            <input type="text" id="sample6_detailAddress" placeholder="상세주소">
                         </div> 
-                       
                     </div>
                     <div class="signup">
                         <button id="signupbtn" disabled onclick="signUpCheck()">가입하기</button>
@@ -156,7 +142,7 @@
  
 
             <footer id="footer" class="footer-area">
-                <ul class="footer-inner">
+                <div class="footer-inner">
                     <div class="footer-inner-box">
                             <div class="ft_inner"><img src="./img/footer_logo.png" alt="footerlogo"></div>
                             <div class="ft_inner">
@@ -205,8 +191,8 @@
                                 </ul>
                             </div> 
                     </div>
-                </ul>
-                <ul class="footer-bottom">
+                </div>
+                <div class="footer-bottom">
                     <div class="sns">
                         <img src="./img/footer_i.png" alt="instagram">
                         <img src="./img/footer_f.png" alt="facebook">
@@ -225,10 +211,10 @@
                         <img src="./img//mark_3.png" alt="mark3">
                         <img src="./img//mark_4.png" alt="mark4">
                     </div>
-                </ul>
+                </div>
             </footer>
 
-            <div id="modal">
+            <aside id="modal">
                 <div id="popup_menu">
                     <div class="close closeBtn"><img src="./img/icon_closeBtn.svg" alt="closeBtn"></div>
                     <div class="popup-line"></div>
@@ -407,7 +393,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </aside>
             <div class="m_modal">
                 <div class="m_popup_menu">
                     <img src="./img/xmark-solid.svg" alt="close">
